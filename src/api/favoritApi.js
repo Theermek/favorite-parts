@@ -12,7 +12,13 @@ async function request(params) {
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join('&')
 
-  const response = await fetch(`/api?${query}`)
+  let response
+  try {
+    response = await fetch(`/api?${query}`)
+  } catch {
+    // fetch падает только на сетевом сбое — текст браузера показывать незачем.
+    throw new Error('Не удалось связаться с сервисом. Проверьте подключение к сети.')
+  }
 
   let data
   try {
