@@ -35,32 +35,35 @@ export default function OffersTable() {
     <section className="my-4">
       <h2 className="h5">Предложения</h2>
       <div className="table-responsive">
-        <table className="table table-sm table-striped align-middle">
+        {/* table-bordered даёт вертикальные разделители между колонками.
+            Текстовые колонки выравниваем влево, числовые вправо: так цены и
+            остатки сравниваются взглядом по разряду. */}
+        <table className="table table-sm table-striped table-bordered align-middle">
           <thead>
             <tr>
-              <th>Название</th>
-              <th>Производитель</th>
-              <th>Артикул</th>
+              <th className="text-start">Название</th>
+              <th className="text-start">Производитель</th>
+              <th className="text-start">Артикул</th>
               <th className="text-end">Цена</th>
               <th className="text-end">Остаток</th>
-              <th>Склад</th>
-              <th>Дата отгрузки</th>
+              <th className="text-start">Склад</th>
+              <th className="text-start">Дата отгрузки</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
               <tr key={row.id} className={row.inStock ? undefined : 'text-secondary'}>
-                <td>{row.name}</td>
-                <td>{row.brand}</td>
-                <td>{row.number}</td>
+                <td className="text-start">{row.name}</td>
+                <td className="text-start">{row.brand}</td>
+                <td className="text-start">{row.number}</td>
                 <td className="text-end">
                   {row.inStock ? priceFormat.format(row.price) : '—'}
                 </td>
                 <td className="text-end">
                   {row.inStock ? row.stock : <span className="badge text-bg-light">нет в наличии</span>}
                 </td>
-                <td>{row.inStock ? row.warehouse : '—'}</td>
-                <td>{row.inStock ? formatDate(row.shipmentDate) : '—'}</td>
+                <td className="text-start">{row.inStock ? row.warehouse : '—'}</td>
+                <td className="text-start">{row.inStock ? formatDate(row.shipmentDate) : '—'}</td>
               </tr>
             ))}
           </tbody>
