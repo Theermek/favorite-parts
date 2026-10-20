@@ -38,7 +38,7 @@ export default function OffersTable() {
         {/* table-bordered даёт вертикальные разделители между колонками.
             Текстовые колонки выравниваем влево, числовые вправо: так цены и
             остатки сравниваются взглядом по разряду. */}
-        <table className="table table-sm table-striped table-bordered align-middle">
+        <table className="table table-sm table-striped table-bordered align-middle offers-table">
           <thead>
             <tr>
               <th className="text-start">Название</th>
@@ -46,7 +46,7 @@ export default function OffersTable() {
               <th className="text-start">Артикул</th>
               <th className="text-end">Цена</th>
               <th className="text-end">Остаток</th>
-              <th className="text-start">Склад</th>
+              <th className="text-start text-nowrap">Склад</th>
               <th className="text-start">Дата отгрузки</th>
             </tr>
           </thead>
@@ -62,7 +62,7 @@ export default function OffersTable() {
                 <td className="text-end">
                   {row.inStock ? row.stock : <span className="badge text-bg-light">нет в наличии</span>}
                 </td>
-                <td className="text-start">{row.inStock ? row.warehouse : '—'}</td>
+                <td className="text-start text-nowrap">{row.inStock ? row.warehouse : '—'}</td>
                 <td className="text-start">{row.inStock ? formatDate(row.shipmentDate) : '—'}</td>
               </tr>
             ))}
